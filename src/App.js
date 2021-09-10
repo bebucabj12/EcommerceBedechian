@@ -1,15 +1,13 @@
 import './App.css';
 import 'materialize-css'
-import NavBar from './components/NavBar';
-import ItemListContainer from './components/ItemListContainer'
-import { FontAwesomeIcons } from '@fortawesome/fontawesome-free'
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 
 function App() {
   return (
     <div className="App">
       <NavBar/>
-      <ItemListContainer gretting='Hola, soy un articulo'/>
+      <ItemListContainer/>
     </div>
   );
 }
