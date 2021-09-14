@@ -7,7 +7,7 @@ export const ItemList = ({ productos }) => {
     //Aca se hace el mapeo
     return (
         <div className="row">            
-            { productos.map(products => <Item productos={products}/>) }            
+            { productos.map(products => <Item key={products.id} productos={products}/>) }            
         </div>
     )
 }
