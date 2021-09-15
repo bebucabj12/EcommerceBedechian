@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 export default function NavBar() {
     return (
+        <>
         <nav>
             <nav className="nav-extended center">
                 <div className="nav-wrapper">
@@ -33,5 +34,6 @@ export default function NavBar() {
                 </div>
             </nav>
         </nav>
+        </>
     )
 }

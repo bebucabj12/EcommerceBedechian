@@ -6,8 +6,11 @@ import Item from './Item'
 export const ItemList = ({ productos }) => {
     //Aca se hace el mapeo
     return (
-        <div className="row">            
-            { productos.map(products => <Item key={products.id} productos={products}/>) }            
+        <div className="itemgrid">
+            <div className="row">            
+                { productos.map(products => <Item key={products.id} productos={products}/>) }            
+            </div>
         </div>
+        
     )
 }

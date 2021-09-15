@@ -1,4 +1,5 @@
 import React from 'react'
+import './cartwidget.css'
 
 export default function CartWidget() {
     return (
