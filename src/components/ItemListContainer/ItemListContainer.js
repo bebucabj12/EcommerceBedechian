@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import { getFetch } from '../../utils/Mock'
+// import { getFetch } from '../../utils/Mock'
 import { ItemList } from './ItemList' 
 import { useParams } from 'react-router-dom'
 import 'materialize-css/dist/css/materialize.min.css'
+import { getFirestore } from '../../services/getFirebase'
 
 //Aca va la funcionalidad que manipula los state y todo lo que deberia estar en los componenytes de lista
 export default function ItemListContainer(props) {
@@ -12,23 +13,20 @@ export default function ItemListContainer(props) {
     const {idCategory} = useParams()
 
         useEffect(() => {
-        if(idCategory){
-            getFetch
-            .then(res => {
-                setProducts(res.filter(products => products.category === idCategory))
+
+            const dbQuery = getFirestore()
+
+            //Traigo la collection 
+            dbQuery.collection('items').get()
+            .then(data => {
+                setProducts( data.docs.map(item => ({id: item.id, ...item.data()}) ))
             })
-            .catch(err=> console.log(err))
+            .catch(e => console.log(e))
             .finally(() => setLoading(false))
-        } else {
-            getFetch
-            .then(res => {
-                setProducts(res)
-            })
-            .catch(err=> console.log(err))
-            .finally(() => setLoading(false))
-        }                   
+                  
         }, [idCategory])
 
+        console.log(products)
         return (
             <>        
             <h1>{props.gretting}</h1>

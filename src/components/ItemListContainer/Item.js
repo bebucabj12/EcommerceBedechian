@@ -1,10 +1,11 @@
-import React from 'react'
-import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
+
 import './item.css'
+
 
 //detalles de la card
 const Item = ({ productos }) => {
+
     return ( 
         <div className='item'>
             <div className="panel hoverable col s4 m4 l4">
@@ -14,7 +15,6 @@ const Item = ({ productos }) => {
                     </div>
                     <div className="card-content center">
                         <span className="card-title activator grey-text text-darken-4">{productos.title} {productos.price}<i className="material-icons right">more_vert</i></span>
-                        <ItemCount/>
                     </div>
                     <div className="card-reveal pink lighten-4">
                         <span className="card-title grey-text text-darken-4">{productos.title}<i className="material-icons right">close</i></span>
