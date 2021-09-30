@@ -44,12 +44,15 @@ export const CartContext = ({ children }) => {
     //     setCartList(cartFilter)
     // }
 
+
+
     console.log('Carrito',cartList)
     return(
         <cartContext.Provider value={{
             cartList, 
             setCartList,
-            agregarItem
+            agregarItem,
+            clear
         }} >
             {children}
         </cartContext.Provider>

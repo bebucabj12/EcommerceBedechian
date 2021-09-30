@@ -7,7 +7,7 @@ export const ItemDetail = ({ producto }) => {
     const { agregarItem } = useCartContext();
 
     const onAdd = (cant) => {
-       agregarItem(producto, cant)        
+       agregarItem( {item: producto, quantity: cant} )        
     }
 
     return (
