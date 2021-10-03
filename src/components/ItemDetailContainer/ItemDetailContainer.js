@@ -1,24 +1,34 @@
-import { useState, useEffect, createContext } from 'react'
-import { getFetch } from '../../utils/MockDetail'
+import { useState, useEffect } from 'react'
 import { ItemDetail } from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
+import { getFirestore } from '../../services/getFirebase'
+import './itemDetailContainer.css'
 
 export default function ItemDetailContainer() {
     const [producto, setProduct] = useState({})
-    const {idProducto} = useParams()
+    const { idProducto } = useParams()
+
+    const [loading, setLoading]  = useState(true)
 
     useEffect(() => {
-            getFetch
-            .then(res => {
-                setProduct(res)
-            })
-            .catch(err=> console.log(err))
-        }, [idProducto])
+          const dbQuery = getFirestore()
+          
+          dbQuery.collection('items').doc('3qEjZTyjl0dY1RgrgXbR').get()
+          .then(resp => {
+              setProduct( {id: resp.id, ...resp.data} )
+          })
+          .catch(err => console.log(err))
+          .finally(() => setLoading(false))
+        }, [])
 
-        console.log('products en detail', idProducto)
     return (
-        <div>
-            <ItemDetail producto={producto}/>
-        </div>
+        <>
+            {
+                loading ?
+                <i className="material-icons center">hourglass_bottom</i>
+                :
+                <ItemDetail producto={producto}/>
+            }
+        </>
     )
 }

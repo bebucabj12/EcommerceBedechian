@@ -7,9 +7,9 @@ export default function Cart() {
 
     console.log('cartList en dond yo quiero', cartList)
     return (
-        <div>  
+        <div>
             {
-                cartList.length === 0 ? 
+                cartList.length === 0 ?
                 <div>
                     <h3>Aún no ha seleccionado ningun producto.</h3>
                     <Link to='/'>
@@ -17,11 +17,11 @@ export default function Cart() {
                     </Link>
                 </div>
                 :
-                cartList.map(res =>  <div>
-                        <h2>{res.title}</h2>)
-                        <button onClick={() => clear()}>Vaciar carrito</button>
-                </div>)
-            }          
+                <div>
+                    {cartList.map(res => <h2>{res.item.title}</h2>)}
+                    <button onClick={() => clear()}>Vaciar carrito</button>
+                </div>
+            }
         </div>
     )
 }

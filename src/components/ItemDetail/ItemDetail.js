@@ -17,7 +17,7 @@ export const ItemDetail = ({ producto }) => {
                     <div className="col s5 push-s3">
                         <div className="card horizontal z-depth-5">
                             <div className="card-image responsive-img">
-                                <img src={producto.pictureUrl}/>
+                                <img src={producto.pictureUrl} alt='fotoProducto'/>
                             </div>
                             <div className="card-stacked">
                                 <h4 className="header center">{producto.title}</h4>

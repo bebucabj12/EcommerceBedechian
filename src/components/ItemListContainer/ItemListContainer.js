@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-// import { getFetch } from '../../utils/Mock'
 import { ItemList } from './ItemList' 
 import { useParams } from 'react-router-dom'
 import 'materialize-css/dist/css/materialize.min.css'
@@ -26,7 +25,6 @@ export default function ItemListContainer(props) {
                   
         }, [idCategory])
 
-        console.log(products)
         return (
             <>        
             <h1>{props.gretting}</h1>

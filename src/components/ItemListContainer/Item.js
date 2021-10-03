@@ -25,8 +25,7 @@ const Item = ({ productos }) => {
                     </div>
                 </div>
             </div>
-        </div>
-                         
+        </div>                         
     )        
 }
 

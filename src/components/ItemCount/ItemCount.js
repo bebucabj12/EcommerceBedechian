@@ -9,10 +9,6 @@ const ItemCount = ({ initial, stock, onAdd}) => {
     const [count, setCount] = useState(initial);
     const [inputType, setInputType] = useState('button')
 
-    const handleInter = () => {
-        setInputType('input')
-    }
-
     const sumar = () => {
         if (count < stock) {
             setCount(count + 1)
@@ -27,15 +23,15 @@ const ItemCount = ({ initial, stock, onAdd}) => {
 
     const addCart = () => {
         onAdd(count)
+        setInputType('input')
     }
 
-    //console.log(count)
     return (
         <>
             {
                 inputType === 'button' ?
                     <div>
-                        <ButtonCount onClick={() => onAdd(count)} handleInter={handleInter}/>
+                        <ButtonCount onAdd={addCart}/>
                         {/* Quantity */}
                         <div className="input-field col s5">
                             <a onClick={sumar} className="btn-floating btn-small waves-effect waves-light deep-purple lighten-2"><i className="material-icons">add</i></a>
