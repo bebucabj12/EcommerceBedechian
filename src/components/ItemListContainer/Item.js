@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
-
 import './item.css'
-
 
 //detalles de la card
 const Item = ({ productos }) => {
@@ -11,7 +9,7 @@ const Item = ({ productos }) => {
             <div className="panel hoverable col s4 m4 l4">
                 <div key={productos.id} className="card">
                     <div className="center">
-                        <img className="responsive-img activator" src={productos.pictureUrl}/>
+                        <img className="responsive-img activator" src={productos.pictureUrl} alt='foto'/>
                     </div>
                     <div className="card-content center">
                         <span className="card-title activator grey-text text-darken-4">{productos.title} {productos.price}<i className="material-icons right">more_vert</i></span>

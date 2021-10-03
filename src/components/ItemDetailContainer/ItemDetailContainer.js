@@ -13,13 +13,14 @@ export default function ItemDetailContainer() {
     useEffect(() => {
           const dbQuery = getFirestore()
           
-          dbQuery.collection('items').doc('3qEjZTyjl0dY1RgrgXbR').get()
+          dbQuery.collection('items').doc(idProducto).get()
           .then(resp => {
-              setProduct( {id: resp.id, ...resp.data} )
+                console.log('log en itemdetailcont', resp)
+                setProduct({id: resp.id, ...resp.data()})
           })
           .catch(err => console.log(err))
           .finally(() => setLoading(false))
-        }, [])
+        }, [idProducto])
 
     return (
         <>
