@@ -37,19 +37,27 @@ export const CartContext = ({ children }) => {
         setCartList([])
     }
 
-    // const removeItem = (itemId) => {
-    //     const cartFilter = cartList.filter(element => 
-    //     element.item.id !== id)
+    const removeItem = (itemId) => {
+        const cartFilter = cartList.filter(element => 
+        element.item.item.id !== itemId)
 
-    //     setCartList(cartFilter)
-    // }
+        setCartList(cartFilter)
+        console.log('cartFilter', cartFilter)
+    }
+
+    const totalPrice =()=>{
+        return cartList.reduce((acum, valor)=>(acum + (valor.item.quantity * valor.item.item.price)), 0) 
+      }
+
 
     return(
         <cartContext.Provider value={{
             cartList, 
             setCartList,
             agregarItem,
-            clear
+            clear,
+            removeItem,
+            totalPrice
         }} >
             {children}
         </cartContext.Provider>

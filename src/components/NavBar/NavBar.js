@@ -10,7 +10,7 @@ export default function NavBar() {
             <nav className="nav-extended center">
                 <div className="nav-wrapper">
                     <Link to='/'>
-                    <a href="#" className="brand-logo">Wessly</a>
+                        <a href="#" className="brand-logo">Wessly</a>
                     </Link>
                     <Link to='/cart'>
                         <CartWidget/>

@@ -22,7 +22,7 @@ export const ItemDetail = ({ producto }) => {
                             <div className="card-stacked">
                                 <h4 className="header center">{producto.title}</h4>
                                 <div className="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information.I am a very simple card. I am good at containing small bits of information.I am a very simple card. I am good at containing small bits of information</p>
+                                    <p>{producto.descripcion}</p>
                                     <h5>{producto.price}</h5>
                                 </div>
                                 <div className="card-action">
