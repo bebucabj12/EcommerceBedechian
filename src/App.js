@@ -6,6 +6,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import Cart from './components/Cart/Cart';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import { CartContext } from './Context/cartContext';
+import Form from './components/Form/Form';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/category/:idCategory' component={ItemListContainer}/>
           <Route exact path='/item/:idProducto' component={ItemDetailContainer}/>        
           <Route exact path='/cart' component={Cart}/>         
+          <Route exact path='/cart/finally' component={Form}/>         
         </Switch>
       </Router>
     </CartContext>   

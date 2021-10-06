@@ -45,7 +45,8 @@ const ItemCount = ({ initial, stock, onAdd}) => {
                 <div>
                     <Link to='/cart'>
                         <InputCount/>
-                    </Link><Link to='/'>
+                    </Link>
+                    <Link to='/'>
                         <button className="btn-small pink lighten-2">Seguir comprando</button>
                     </Link>
                 </div>

@@ -1,8 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useCartContext } from '../../Context/cartContext'
 
 export default function CartDetail() {
     const { cartList, clear, removeItem, totalPrice } = useCartContext()
+
+    // const onClickToForm = () => {
+
+    // } 
 
     return (
         <div>
@@ -27,10 +32,13 @@ export default function CartDetail() {
                     </div>
                 </div>)                            
             }
-                <button className="btn-small pink lighten-2" onClick={() => clear()}>Vaciar carrito</button>
+                
                 <div className='row'>
                     <h2>Total: $ {totalPrice()} </h2>
-                    <button className="btn-small pink lighten-2">Ir a pagar</button>
+                    <button className="btn-small red darken-3" onClick={() => clear()}>Vaciar carrito</button>
+                    <Link to='/cart/finally'>
+                        <button className="btn-small pink lighten-2">Terminar compra</button>
+                    </Link>
                 </div>
         </div>
     )
