@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ButtonCount({onAdd}) {
+export default function ButtonCount( {onAdd} ) {
 
     return (
         <>

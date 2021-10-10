@@ -15,7 +15,6 @@ export default function ItemDetailContainer() {
           
           dbQuery.collection('items').doc(idProducto).get()
           .then(resp => {
-                console.log('log en itemdetailcont', resp)
                 setProduct({id: resp.id, ...resp.data()})
           })
           .catch(err => console.log(err))

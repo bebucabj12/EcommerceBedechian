@@ -15,14 +15,16 @@ export default function ItemListContainer(props) {
 
             const dbQuery = getFirestore()
 
-            //Traigo la collection 
-            dbQuery.collection('items').get()
-            .then(data => {
-                setProducts( data.docs.map(item => ({id: item.id, ...item.data()}) ))
+            const getCollection = idCategory ? dbQuery.collection('items').where('category', '==', idCategory) : dbQuery.collection('items')
+
+            //Traigo la collection según corresponda            
+            getCollection.get()
+            .then(res => {
+                setProducts(res.docs.map(item => ( {id: item.id, ...item.data()} )))
             })
             .catch(e => console.log(e))
             .finally(() => setLoading(false))
-                  
+                 
         }, [idCategory])
 
         return (

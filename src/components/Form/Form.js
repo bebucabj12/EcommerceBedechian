@@ -7,7 +7,6 @@ import './form.css'
 
 export default function Form() {
     const { cartList, totalPrice } = useCartContext()
-
     const [ formData, setFormData ] = useState({
         name: '',
         cel: '',
@@ -33,6 +32,7 @@ export default function Form() {
 
         //Creo una nueva collection
         const db = getFirestore()
+
         db.collection('orders').add(order) //add: si no existe la coleccion la crea
         .then(resp => alert('Se ha creado la orden exitosamente. Nº de orden: ' + resp.id))
         .catch(e => console.log(e))
@@ -41,13 +41,26 @@ export default function Form() {
             cel: '',
             email: ''
         }))
-
         
+        //Control de stock
+        // const itemsUpdate = db.collection('items').where(
+        //     firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.item.id)
+        // )
 
-        //Update de un campo en uan collection
-        // db.collection('items').doc('idProducto').update({
-        //     //Campos a actualizar
-        //     stock: 8
+        // const batch = db.batch()
+
+        // itemsUpdate.get()
+        // .then(collection => {
+        //     collection.docs.forEach(docSnapshot => {
+        //         batch.update(docSnapshot.ref, {
+        //             stock: docSnapshot.data().stock - cartList.find(item => item.item.item.id === docSnapshot.id).quantity
+        //         })
+        //     })
+
+        //     batch.commit()
+        //     .then(res => {
+        //         console.log('resultado del batch', res)
+        //     })
         // })
     }
 

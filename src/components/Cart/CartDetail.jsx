@@ -5,10 +5,6 @@ import { useCartContext } from '../../Context/cartContext'
 export default function CartDetail() {
     const { cartList, clear, removeItem, totalPrice } = useCartContext()
 
-    // const onClickToForm = () => {
-
-    // } 
-
     return (
         <div>
             {
