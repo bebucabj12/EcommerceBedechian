@@ -10,7 +10,7 @@ export const useCartContext = () => {
 
 //Declaro componente para abstraer toda la funcionalidad del contexto
 export const CartContext = ({ children }) => {
-    const [cartList, setCartList] = useState([])    
+    const [cartList, setCartList] = useState([])
 
     const agregarItem = (item, quantity) => {
 
@@ -20,8 +20,7 @@ export const CartContext = ({ children }) => {
             //Cuando los items sean iguales sumamos al item que ya estaba en el carrito
             upDateQuantity.forEach(element => {
                 if(element.item.item.id === item.item.id) {
-                    console.log('Entro al if de quantity', quantity)
-                    element.item.quantity += quantity
+                    element.item.quantity += item.quantity
                 }
             })            
             setCartList(upDateQuantity)
@@ -30,7 +29,6 @@ export const CartContext = ({ children }) => {
         }
     }
 
-    console.log('cartList al final', cartList)
     //Logica que busca el item seleccionado en el array del carrito
     const isRepeat = (id) => {      
         const index = cartList.findIndex(element => element.item.item.id === id)

@@ -1,99 +1,43 @@
-import { useState } from 'react'
-import { useCartContext } from '../../Context/cartContext'
-import { getFirestore } from '../../services/getFirebase'
-import firebase from 'firebase'
-import 'firebase/firestore'
+import { useFormContext } from '../../Context/formContext'
 import './form.css'
 
 export default function Form() {
-    const { cartList, totalPrice } = useCartContext()
-    const [ formData, setFormData ] = useState({
-        name: '',
-        cel: '',
-        email: ''
-    })
-
-    const handleOnSubmit = (e) => {
-        //Creo la orden
-        e.preventDefault()
-        let order = {}
-
-        order.date = firebase.firestore.Timestamp.fromDate( new Date() )
-        order.buyer = formData
-        order.total = totalPrice()
-
-        order.items = cartList.map(cartItem => {
-            const id = cartItem.item.item.id
-            const title = cartItem.item.item.title
-            const price = cartItem.item.item.price
-
-            return {id, title, price}
-        })
-
-        //Creo una nueva collection
-        const db = getFirestore()
-
-        db.collection('orders').add(order) //add: si no existe la coleccion la crea
-        .then(resp => alert('Se ha creado la orden exitosamente. Nº de orden: ' + resp.id))
-        .catch(e => console.log(e))
-        .finally(() => setFormData({
-            name: '',
-            cel: '',
-            email: ''
-        }))
-        
-        //Control de stock
-        // const itemsUpdate = db.collection('items').where(
-        //     firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.item.id)
-        // )
-
-        // const batch = db.batch()
-
-        // itemsUpdate.get()
-        // .then(collection => {
-        //     collection.docs.forEach(docSnapshot => {
-        //         batch.update(docSnapshot.ref, {
-        //             stock: docSnapshot.data().stock - cartList.find(item => item.item.item.id === docSnapshot.id).quantity
-        //         })
-        //     })
-
-        //     batch.commit()
-        //     .then(res => {
-        //         console.log('resultado del batch', res)
-        //     })
-        // })
-    }
-
-    const handleOnChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-    }
+    const { 
+        handleOnChange, 
+        handleBlur, 
+        handleOnSubmit,
+        error, 
+        formData,
+        validationFields
+    } = useFormContext();
 
     return (
         <>
             <div class="row">
-                <form onChange={handleOnChange} class="col s6 center">
+                <form onChange={handleOnChange} class="col s6">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input 
-                                id="last_name" 
-                                type="text" 
-                                class="validate" 
-                                name='name' 
+                            <input
+                                id="last_name"
+                                type="text"
+                                className="validate"
+                                name='name'
                                 value={formData.name}
+                                onBlur={handleBlur}
                             />
+                            {error.name && <p className="alert">{error.name}</p>}
                             <label for="last_name">Full name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input 
-                                id="last_name" 
-                                type="text" 
-                                class="validate"
-                                name='cel' 
+                            <input
+                                id="last_name"
+                                type="text"
+                                className="validate"
+                                name='cel'
                                 value={formData.cel}
+                                onBlur={handleBlur}
                             />
+                            {error.cel && <p className="alert">{error.cel}</p>}
                             <label for="last_name">Phone</label>
                         </div>
                     </div>
@@ -102,16 +46,18 @@ export default function Form() {
                             <input 
                                 id="email" 
                                 type="email" 
-                                class="validate"
+                                className="validate"
                                 name="email"
                                 value={formData.email}
+                                onBlur={handleBlur}
                             />
+                            {error.email && <p className="alert">{error.email}</p>}
                             <label for="email">Email</label>
                         </div>
                     </div>
+                    <button type="submit" onClick={validationFields} className="btn-small deep-orange accent-1">Crear orden</button>
                 </form>
             </div>
-            <button className="btn-small deep-orange accent-1" onClick={handleOnSubmit}>Crear orden</button>
         </>
     )
 }

@@ -31,7 +31,19 @@ export default function ItemListContainer(props) {
             <>        
             <h1>{props.gretting}</h1>
                 {   loading ? 
-                    <i className="material-icons center">hourglass_bottom</i>
+                    <div id="loadingIcon" className="preloader-wrapper big active">
+                        <div className="spinner-layer spinner-blue-only">
+                            <div className="circle-clipper left">
+                                <div className="circle"></div>
+                            </div>
+                            <div className="gap-patch">
+                                <div className="circle"></div>
+                            </div>
+                            <div className="circle-clipper right">
+                                <div className="circle"></div>
+                            </div>
+                        </div>
+                    </div>
                     :                
                     <ItemList productos={products}/> 
                 }

@@ -26,7 +26,7 @@ export const ItemDetail = ({ producto }) => {
                                     <h5>{producto.price}</h5>
                                 </div>
                                 <div className="card-action">
-                                    <ItemCount initial={1} stock={5} onAdd={onAdd}/>
+                                    <ItemCount initial={1} stock={producto.stock} onAdd={onAdd}/>
                                 </div>
                             </div>
                         </div>

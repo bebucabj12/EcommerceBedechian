@@ -1,3 +1,8 @@
 .itemgrid {
     padding: 60px;
 }
+
+#loadingIcon {
+    position: absolute;
+    justify-content: center;    
+}
