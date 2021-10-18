@@ -7,8 +7,7 @@ export default function Form() {
         handleBlur, 
         handleOnSubmit,
         error, 
-        formData,
-        validationFields
+        formData
     } = useFormContext();
 
     return (
@@ -55,7 +54,7 @@ export default function Form() {
                             <label for="email">Email</label>
                         </div>
                     </div>
-                    <button type="submit" onClick={validationFields} className="btn-small deep-orange accent-1">Crear orden</button>
+                    <button type="submit" onClick={handleOnSubmit} className="btn-small deep-orange accent-1">Crear orden</button>
                 </form>
             </div>
         </>

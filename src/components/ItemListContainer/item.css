@@ -2,7 +2,9 @@
     padding: 60px;
 }
 
-#loadingIcon {
-    position: absolute;
-    justify-content: center;    
+.loadingIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
 }

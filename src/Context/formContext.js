@@ -19,65 +19,62 @@ export const FormContext = ({ children }) => {
         cel: '',
         email: ''
     }
-    const { cartList, totalPrice } = useCartContext()
+    const { cartList, totalPrice, clear } = useCartContext()
     const [ formData, setFormData ] = useState(initialForm)
     const [ error, setError ] = useState({})
 
-    const validationFields = (e) => {
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
         if(formData.name === "" || formData.cel === ""  || formData.email === "" ){
             e.preventDefault()
-            console.log('Complete los datos')
+            alert('Por favor complete los datos correctamente')
             return false
         } else {
-            handleOnSubmit()
+            //Creo la orden
+            let order = {}
+
+            order.date = firebase.firestore.Timestamp.fromDate( new Date() )
+            order.buyer = formData
+            order.total = totalPrice()
+
+            order.items = cartList.map(cartItem => {
+                const id = cartItem.item.item.id
+                const title = cartItem.item.item.title
+                const price = cartItem.item.item.price
+
+                return {id, title, price}
+            })
+
+            //Creo una nueva collection
+            const db = getFirestore()
+            db.collection('orders').add(order) //add: si no existe la coleccion la crea
+            .then(resp => alert('Se ha creado la orden exitosamente. Nº de orden: ' + resp.id))
+            .catch(e => console.log(e))
+            .finally(() => setFormData(initialForm), clear())
+                
+            //Control de stock
+            const itemsUpdate = db.collection('items').where(
+                firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.item.item.id)
+            )
+
+            const batch = db.batch()
+
+            itemsUpdate.get()
+            .then(collection => {
+                collection.docs.forEach(docSnapshot => {
+                    batch.update(docSnapshot.ref, {
+                        stock: docSnapshot.data().stock - cartList.find(item => item.item.item.id === docSnapshot.id).item.quantity
+                    })
+                })
+
+                batch.commit()
+                .then(res => {
+                    console.log('resultado del batch', res)
+                })
+            }) //Fin control de stock
+
             return true
         }
-    }
-
-    const handleOnSubmit = (e) => {
-        console.log('Entro al handleSubmit')
-        //Creo la orden
-        let order = {}
-
-        order.date = firebase.firestore.Timestamp.fromDate( new Date() )
-        order.buyer = formData
-        order.total = totalPrice()
-
-        order.items = cartList.map(cartItem => {
-            const id = cartItem.item.item.id
-            const title = cartItem.item.item.title
-            const price = cartItem.item.item.price
-
-            return {id, title, price}
-        })
-
-        //Creo una nueva collection
-        const db = getFirestore()
-        db.collection('orders').add(order) //add: si no existe la coleccion la crea
-        .then(resp => alert('Se ha creado la orden exitosamente. Nº de orden: ' + resp.id))
-        .catch(e => console.log(e))
-        .finally(() => setFormData(initialForm))
-            
-        //Control de stock
-        const itemsUpdate = db.collection('items').where(
-            firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.item.item.id)
-        )
-
-        const batch = db.batch()
-
-        itemsUpdate.get()
-        .then(collection => {
-            collection.docs.forEach(docSnapshot => {
-                batch.update(docSnapshot.ref, {
-                    stock: docSnapshot.data().stock - cartList.find(item => item.item.item.id === docSnapshot.id).item.quantity
-                })
-            })
-
-            batch.commit()
-            .then(res => {
-                console.log('resultado del batch', res)
-            })
-        }) //Fin control de stock
     }
 
     const handleOnChange = (e) => {
@@ -123,8 +120,7 @@ export const FormContext = ({ children }) => {
             handleOnChange,
             handleBlur,
             error,
-            formData,
-            validationFields
+            formData
         }} >
             {children}
         </formContext.Provider>
