@@ -1,7 +1,7 @@
 # Wessly Ecommerce - CoderHouse
 ## _Proyecto integrador final_
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://wey-cfc3a.web.app/)
 
 ### Wessly es mi proyecto final para el curso de React JS de CoderHouse
 
