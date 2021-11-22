@@ -1,5 +1,8 @@
 .itemdetail {
-    padding-top: 10%;
+    display: flex;
+    min-height: 100vh;
+    text-align: center;
+    padding: 60px;
 }
 
 .card-image {

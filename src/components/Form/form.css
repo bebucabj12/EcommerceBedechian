@@ -2,6 +2,10 @@ form {
     margin-top: 10%;
 }
 
+.formulario {
+    min-height: 100vh;
+}
+
 .alert {
     font-size: small;
     color:brown;

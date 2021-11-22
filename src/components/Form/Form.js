@@ -12,9 +12,9 @@ export default function Form() {
 
     return (
         <>
-            <div class="row">
-                <form onChange={handleOnChange} class="col s6">
-                    <div class="row">
+            <div class="formulario row">
+                <form onChange={handleOnChange} className="form col s6">
+                    <div className="row">
                         <div class="input-field col s6">
                             <input
                                 id="last_name"
@@ -40,8 +40,8 @@ export default function Form() {
                             <label for="last_name">Phone</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
+                    <div className="row">
+                        <div className="input-field col s12">
                             <input 
                                 id="email" 
                                 type="email" 

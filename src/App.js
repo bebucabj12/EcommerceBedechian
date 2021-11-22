@@ -8,6 +8,7 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import { CartContext } from './Context/cartContext';
 import { FormContext } from './Context/formContext';
 import Form from './components/Form/Form';
+import { Footer } from './components/Footer/footer';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           </FormContext>
         </Switch>
       </Router>
+      <Footer/>
     </CartContext>
   );
 }

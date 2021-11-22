@@ -2,7 +2,6 @@ import { useState } from 'react'
 import ButtonCount from '../ButtonCount/ButtonCount';
 import InputCount from '../InputCount/InputCount';
 import { Link } from 'react-router-dom'
-import './itemCount.css'
 
 //Falta cambiar el button
 const ItemCount = ({ initial, stock, onAdd}) => {
@@ -47,7 +46,7 @@ const ItemCount = ({ initial, stock, onAdd}) => {
                         <InputCount/>
                     </Link>
                     <Link to='/'>
-                        <button className="btn-small pink lighten-2">Seguir comprando</button>
+                        <button className="btn-small pink lighten-2">Seguir compras</button>
                     </Link>
                 </div>
             }

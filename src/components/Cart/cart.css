@@ -1,6 +1,10 @@
 .cart {
+    display: flex;
     margin-top: 10%;
-    margin-left: 35%;
+    padding: 40px;
+    min-height: 100vh;
+    text-align: center;
+    justify-content: center;
 }
 
 p {

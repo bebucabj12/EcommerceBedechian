@@ -27,15 +27,14 @@ export default function CartDetail() {
                         </div>
                     </div>
                 </div>)                            
-            }
-                
-                <div className='row'>
-                    <h2>Total: $ {totalPrice()} </h2>
-                    <button className="btn-small red darken-3" onClick={() => clear()}>Vaciar carrito</button>
-                    <Link to='/cart/finally'>
-                        <button className="btn-small pink lighten-2">Terminar compra</button>
-                    </Link>
-                </div>
+            }                
+            <div className='row'>
+                <h2>Total: $ {totalPrice()} </h2>
+                <button className="btn-small red darken-3" onClick={() => clear()}>Vaciar carrito</button>
+                <Link to='/cart/finally'>
+                    <button className="btn-small pink lighten-2">Terminar compra</button>
+                </Link>
+            </div>
         </div>
     )
 }

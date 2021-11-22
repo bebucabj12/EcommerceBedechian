@@ -6,7 +6,7 @@ const Item = ({ productos }) => {
 
     return ( 
         <div className='item'>
-            <div className="panel hoverable col s4 m4 l4">
+            <div className="panel hoverable col s12 m6 l4">
                 <div key={productos.id} className="card">
                     <div className="center">
                         <img className="responsive-img activator" src={productos.pictureUrl} alt='foto'/>
